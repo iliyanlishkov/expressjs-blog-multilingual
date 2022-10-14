@@ -57,7 +57,7 @@ git clone https://github.com/iliyanlishkov/expressjs-blog-multilingual.git
 ```
 npm install
 ```
-3. Create and configure your Postgre DB (you will find it exported in the project folder)
+3. Create and configure your Postgre DB (you will find it exported in the project folder as `db.sql`)
 ```
 // log into postgre
 sudo -u postgres psql
