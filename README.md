@@ -315,7 +315,7 @@ If we want to have a home page only in English language, then we will add the ro
 
 ```js
 export default {
-	home: "/", //get
+    home: "/", //get
 };
 ```
 
@@ -324,7 +324,7 @@ In case we want to have the home page for Bulgarian language as well, we will ad
 
 ```js
 export default {
-	home: "/", //get
+    home: "/", //get
 };
 ```
 
@@ -333,16 +333,16 @@ export default {
 Now let's create another route group with two routes for login form authentication.
 ```js
 {
-		method: "get",
-		path: "routes.login",
-		controller: "Auth/LoginController@index",
-		name: "_get_login_.index",
+    method: "get",
+    path: "routes.login",
+    controller: "Auth/LoginController@index",
+    name: "_get_login_.index",
 },
 {
-		method: "post",
-		path: "/post-login",
-		controller: "Auth/LoginController@handleLoginForm",
-		name: "post_login_.handleLoginForm",
+    method: "post",
+    path: "/post-login",
+    controller: "Auth/LoginController@handleLoginForm",
+    name: "post_login_.handleLoginForm",
 }
 ```
 
@@ -354,9 +354,9 @@ This means the `http://localhost:3000/post-login` post url won't be registered f
 `/src/views/pages/auth/login.ejs`
 ``` html
 <form
-	action="<%= locals.route('post_login_.handleLoginForm'); %>"
-	method="POST"
-	id="login-form"
+    action="<%= locals.route('post_login_.handleLoginForm'); %>"
+    method="POST"
+    id="login-form"
 >
 ```
 
@@ -374,7 +374,7 @@ Example how to generate a URL from a Controller (for redirect reasons for exampl
 import { getNamedRouteUrl } from "../../lib/route/getNamedRouteUrl/getNamedRouteUrl.js";
 
 let url = getNamedRouteUrl (
-	req.locale + "_get_login_.index"
+    req.locale + "_get_login_.index"
 );
 
 // url = http://localhost:3000/login
@@ -385,12 +385,12 @@ If the named route defines parameters, you may pass the parameters as the second
 ```js
 // in /src/translations/lang/bg/pages/auth.ts
 export default [
-	{
-		method: "get",
-		path: "routes.emailVerificationLinkCheck",
-		controller: "Auth/EmailVerificationController@emailVerificationLinkCheck",
-		name: "_get_email_verification_.emailVerificationLinkCheck",
-	}
+    {
+        method: "get",
+        path: "routes.emailVerificationLinkCheck",
+        controller: "Auth/EmailVerificationController@emailVerificationLinkCheck",
+        name: "_get_email_verification_.emailVerificationLinkCheck",
+    }
 ];
 
 // in /src/routes/auth.ts
@@ -402,11 +402,11 @@ export default {
 import { getNamedRouteUrl } from "../../lib/route/getNamedRouteUrl/getNamedRouteUrl.js";
 
 let url = getNamedRouteUrl (
-	req.locale + "_get_email_verification_.emailVerificationLinkCheck",
-	{
-		hash: "378yfe87h837f87364873648276d827f62fg872f686",
-		someOtherParameter: "will-be-ignored-for-no-match"
-	}
+    req.locale + "_get_email_verification_.emailVerificationLinkCheck",
+    {
+        hash: "378yfe87h837f87364873648276d827f62fg872f686",
+        someOtherParameter: "will-be-ignored-for-no-match"
+    }
 );
 
 // url = http://localhost:3000/bg/auth/email-verify/378yfe87h837f87364873648276d827f62fg872f686
@@ -418,23 +418,23 @@ If you pass additional parameters in string format these strings will be attache
 
 ```js
 let url1 = getNamedRouteUrl (
-	req.locale + "_get_email_verification_.emailVerificationLinkCheck",
-	{
-		hash: "378yfe87h837f87364873648276d827f62fg872f686",
-		someOtherParameter: "will-be-ignored-for-no-match"
-	},
-	"user=10",
-	"country=china",
-	"#top"
+    req.locale + "_get_email_verification_.emailVerificationLinkCheck",
+    {
+        hash: "378yfe87h837f87364873648276d827f62fg872f686",
+        someOtherParameter: "will-be-ignored-for-no-match"
+    },
+    "user=10",
+    "country=china",
+    "#top"
 );
 
 // url1 = http://localhost:3000/bg/auth/email-verify/378yfe87h837f87364873648276d827f62fg872f686?user=10&country=china#top
 
 let url2 = getNamedRouteUrl (
-	req.locale + "_get_email_verification_.emailVerificationLinkCheck",
-	"user=10",
-	"country=china",
-	"#top"
+    req.locale + "_get_email_verification_.emailVerificationLinkCheck",
+    "user=10",
+    "country=china",
+    "#top"
 );
 
 // url2 = http://localhost:3000/bg/auth/email-verify/378yfe87h837f87364873648276d827f62fg872f686?user=10&country=china#top
@@ -447,9 +447,9 @@ let url2 = getNamedRouteUrl (
 To generate a route from an EJS file, use the following helper:
 ```html
 <form
-	action="<%= locals.route('post_login_.handleLoginForm'); %>"
-	method="POST"
-	id="login-form"
+    action="<%= locals.route('post_login_.handleLoginForm'); %>"
+    method="POST"
+    id="login-form"
 >
 ```
 
@@ -471,9 +471,9 @@ import { Request, Response } from "express";
 
 // connecting to table_name "users" in our PostgreSQL DB
 class User extends Model {
-	constructor(req?: Request, res?: Response) {
-		super("users", req, res);
-	}
+    constructor(req?: Request, res?: Response) {
+        super("users", req, res);
+    }
 }
 
 export { User };
@@ -487,44 +487,44 @@ You can add custom methods for the registered Model
 ```js
 class User extends Model {
 
-	...
+    ...
 
-	// adds a findUserByEmail() method to the User's model because it will be used very frequently in the app to find the user via email.
-	async findUserByEmail(email: string) {
+    // adds a findUserByEmail() method to the User's model because it will be used very frequently in the app to find the user via email.
+    async findUserByEmail(email: string) {
 
-		let self: ModelInterface = this;
-		self.modelGlobals.recordFetchedBy.column = "email";
-		self.modelGlobals.recordFetchedBy.value = email;
+        let self: ModelInterface = this;
+        self.modelGlobals.recordFetchedBy.column = "email";
+        self.modelGlobals.recordFetchedBy.value = email;
 
-		let queryRes: null | LooseObject = null;
-		let query = `
-			SELECT * 
-			FROM ${this.modelGlobals.DB_table_name} 
-			WHERE ${self.modelGlobals.recordFetchedBy.column} = '${self.modelGlobals.recordFetchedBy.value}' 
-			FETCH FIRST 1 ROWS ONLY
-		;`;
+        let queryRes: null | LooseObject = null;
+        let query = `
+            SELECT * 
+            FROM ${this.modelGlobals.DB_table_name} 
+            WHERE ${self.modelGlobals.recordFetchedBy.column} = '${self.modelGlobals.recordFetchedBy.value}' 
+            FETCH FIRST 1 ROWS ONLY
+        ;`;
 
-		try {
-			queryRes = await queryDb(query);
-		} catch (err: any) {
-			throw setLoggerExtraInfo(err, {
-				functionName: "findUserByEmail()",
-				query: JSON.stringify(query),
-			});
-		}
+        try {
+            queryRes = await queryDb(query);
+        } catch (err: any) {
+            throw setLoggerExtraInfo(err, {
+                functionName: "findUserByEmail()",
+                query: JSON.stringify(query),
+            });
+        }
 
-		// this is done so we could update directly the record with the update() function;
-		if (queryRes) {
-			let keys = Object.keys(queryRes[0]);
-			for (let i = 0; i < keys.length; i++) {
-				self[keys[i]] = queryRes[0][keys[i]];
-			}
-		} else {
-			return null;
-		}
+        // this is done so we could update directly the record with the update() function;
+        if (queryRes) {
+            let keys = Object.keys(queryRes[0]);
+            for (let i = 0; i < keys.length; i++) {
+                self[keys[i]] = queryRes[0][keys[i]];
+            }
+        } else {
+            return null;
+        }
 
-		return self;
-	}
+        return self;
+    }
 }
 
 export { User };
@@ -539,10 +539,10 @@ import { User } from "../../models/user/User.js";
 
 // get all users where the user's first name is John, order the returned records descending by the table column "created_at" and "paginate" by showing "2 records per page".
 let users = await new User(req, res) // we need to pass the req and res here only if we are using pagination
-	.where("name", "=", "John")
-	.orderBy("created_at", "desc")
-	.paginate(2)
-	.get();
+    .where("name", "=", "John")
+    .orderBy("created_at", "desc")
+    .paginate(2)
+    .get();
 ```
 
 #### Query Methods
@@ -575,8 +575,8 @@ The interesting part here is that you can edit the record directly and then call
 // get the first user with id 25.
 let user = await new User().findById(25);
 if(user) {
-	user.verified = true;
-	await user.update();
+    user.verified = true;
+    await user.update();
 }
 ```
 
@@ -620,10 +620,10 @@ The `where(x: string, y: string, z: string | number)` method is used to add "whe
 For example, the following query retrieves users where the name is equal to John and the id is greater than 35 and the email includes "@gmail.com":
 ```js
 let users = await new User()
-	.where("name", "=", "John")
-	.where("id", ">", 35)
-	.where("email", "LIKE", "%@gmail.com%")
-	.get();
+    .where("name", "=", "John")
+    .where("id", ">", 35)
+    .where("email", "LIKE", "%@gmail.com%")
+    .get();
 ```
 
 ##### OrWhere Method
@@ -632,11 +632,11 @@ When chaining together calls to the query builder `where()` method, the `where` 
 For example, the following query retrieves users where the name is equal to John and the id is greater than 35 and the email includes "@gmail.com" or "@mail.de":
 ```js
 let users = await new User()
-	.where("name", "=", "John")
-	.where("id", ">", "35")
-	.where("email", "LIKE", "%@gmail.com%")
-	.orWhere("email", "LIKE", "%@mail.de%")
-	.get();
+    .where("name", "=", "John")
+    .where("id", ">", "35")
+    .where("email", "LIKE", "%@gmail.com%")
+    .orWhere("email", "LIKE", "%@mail.de%")
+    .get();
 ```
 
 
@@ -645,18 +645,18 @@ The `orderBy(x: string, y: "desc" | "asc")` method allows you to sort the result
 
 ```js
 let users = await new User() 
-	.where("name", "=", "John")
-	.orderBy("created_at", "desc")
-	.get();
+    .where("name", "=", "John")
+    .orderBy("created_at", "desc")
+    .get();
 ```
 
 To sort by multiple columns, you may simply invoke orderBy as many times as necessary:
 ```js
 let users = await new User() 
-	.where("name", "=", "John")
-	.orderBy("name", "desc")
-	.orderBy("email", "asc")
-	.get();
+    .where("name", "=", "John")
+    .orderBy("name", "desc")
+    .orderBy("email", "asc")
+    .get();
 ```
 
 ##### Paginate Method
@@ -664,10 +664,10 @@ The `paginate(x: number)` method accepts one argument of type number to define h
 
 ```js
 let users = await new User(req, res) // we need to pass the req and res here only if we are using paginate() method
-	.where("name", "=", "John")
-	.orderBy("created_at", "desc")
-	.paginate(2)
-	.get();
+    .where("name", "=", "John")
+    .orderBy("created_at", "desc")
+    .paginate(2)
+    .get();
 ```
 
 
@@ -677,8 +677,8 @@ The `first(x?: string[])` method returns only the first row from the query. It a
 ```js
 // return the first user with name John and all of its columns values
 let user = await new User() 
-	.where("name", "=", "John")
-	.first();
+    .where("name", "=", "John")
+    .first();
 
 // user = [{id: 5, name: 'John', email: 'custom@gmail.com' }]
 ```
@@ -687,8 +687,8 @@ Now let's retrieve only the email and name:
 ```js
 // return the first user with name John and only the email and name columns values
 let user = await new User() 
-	.where("name", "=", "John")
-	.first(['email', 'name']);
+    .where("name", "=", "John")
+    .first(['email', 'name']);
 
 // user = [{name: 'John', email: 'custom@gmail.com' }]
 ```
@@ -699,8 +699,8 @@ The `get(x?: string[], y?: boolean)` is the key method that builds the query and
 ```js
 // Get all records with all columns values for users with name John
 let users = await new User()
-	.where("name", "=", "John")
-	.get();
+    .where("name", "=", "John")
+    .get();
 
 // Output
 /*
@@ -786,7 +786,7 @@ In the `RegisterController` we are exporting a simple function with name `index`
 `/src/controllers/Auth/RegisterController.ts`
 ```js
 export function index(req: Request, res: Response, next: NextFunction) {
-	return res.render("pages/auth/register");
+    return res.render("pages/auth/register");
 }
 ```
 
@@ -806,7 +806,7 @@ In the example below, we have set two **global middlewares** for all **main midd
 export const middleware = [methodParser, setLocale];
 
 export function index(req: Request, res: Response, next: NextFunction) {
-	return res.render("pages/auth/register");
+    return res.render("pages/auth/register");
 }
 
 ```
@@ -843,7 +843,7 @@ index.middleware = [csrfProtection, isLoggedIn];
 
 // the main middleware
 export function index(req: Request, res: Response, next: NextFunction) {
-	return res.render("pages/auth/register", { csrfToken: req.csrfToken() } );
+    return res.render("pages/auth/register", { csrfToken: req.csrfToken() } );
 }
 
 
@@ -975,10 +975,10 @@ export const middleware = [ setPathToLocals ];
  ** look like this if we visit http://www.example.com/blog/dogs page:
 */
 res.locals.urlInfo = {
-	originalPath: '/blog/:slug', //req.route.path
-	path: '/blog/dogs', //req.path
-	params: { slug: 'dogs' }, //req.params
-	url: '/blog/dogs' //req.url
+    originalPath: '/blog/:slug', //req.route.path
+    path: '/blog/dogs', //req.path
+    params: { slug: 'dogs' }, //req.params
+    url: '/blog/dogs' //req.url
 }
 ```
 
@@ -1024,11 +1024,11 @@ Example how to use the `Request-Language` header
 ```js
 //In Frontend form
 fetch("/register", {
-	method: "POST",
-	headers: {
-		"Request-Language": "bg",
-	},
-	body: ...,
+    method: "POST",
+    headers: {
+        "Request-Language": "bg",
+    },
+    body: ...,
 })
 ```
 
@@ -1041,16 +1041,16 @@ The `validate` middleware is more like a wrapper for the [`express-validator`](h
 import { validate } from "../middleware/validate.js";
 
 index.middleware = [await validate([
-	body("email")
-		.exists()
-		.withMessage("The email field is required")
-		.bail()
-		.notEmpty()
-		.withMessage("The email field must not be empty")
-		.bail(),
-	body("name")
-		.exists()
-		...
+    body("email")
+        .exists()
+        .withMessage("The email field is required")
+        .bail()
+        .notEmpty()
+        .withMessage("The email field must not be empty")
+        .bail(),
+    body("name")
+        .exists()
+        ...
 ])
 ```
 
@@ -1103,9 +1103,9 @@ let translation = getForLocale('en/pages/home.layoutTitle')
 
 // If the exported object in '/src/translations/lang/en/pages/home.ts' is:
 export default {
-	layoutTitle: "I am the page title",
-	layoutDescription: "I am meta page description",
-	title: "I am the h1"
+    layoutTitle: "I am the page title",
+    layoutDescription: "I am meta page description",
+    title: "I am the h1"
 };
 
 // Тhen the output of the `translation` variable will be: "I am the page title".
@@ -1117,12 +1117,12 @@ If the path points to a key with a value which is with a type different than str
 let translation = getForLocale('en/pages/home.layoutTitle')
 
 export default {
-	layoutTitle: {
-		firstPart: "I am the",
-		secondPart: "page title"
-	},
-	layoutDescription: "I am meta page description",
-	title: "I am the h1"
+    layoutTitle: {
+        firstPart: "I am the",
+        secondPart: "page title"
+    },
+    layoutDescription: "I am meta page description",
+    title: "I am the h1"
 };
 
 /* 
@@ -1137,12 +1137,12 @@ We could retrieve the nested key only as well:
 let translation = getForLocale('en/pages/home.layoutTitle.firstPart')
 
 export default {
-	layoutTitle: {
-		firstPart: "I am the",
-		secondPart: "page title"
-	},
-	layoutDescription: "I am meta page description",
-	title: "I am the h1"
+    layoutTitle: {
+        firstPart: "I am the",
+        secondPart: "page title"
+    },
+    layoutDescription: "I am meta page description",
+    title: "I am the h1"
 };
 
 // then the output of the `translation` variable will be: "I am the".
@@ -1183,15 +1183,15 @@ The second feature is that we can use dynamic variables for our translations. Fo
  ** in '/src/translations/lang/en/pages/register.validationMsg.emailAlreadyTaken'
  */
 export default {
-  validationMsg: {
-    emailAlreadyTaken: 
-      "Your email :userEmail is already taken! Please enter a different email for your registration!"
-  }
+    validationMsg: {
+        emailAlreadyTaken: 
+        "Your email :userEmail is already taken! Please enter a different email for your registration!"
+    }
 };
 
 // Now we retrieve the translation passing the second argument as well
 let translation = getTranslationForLocale('en/pages/register.validationMsg.emailAlreadyTaken', {
-	userEmail: 'customer@gmail.com'
+    userEmail: 'customer@gmail.com'
 });
 
 /*
@@ -1218,14 +1218,14 @@ The `getTranslationWithReplacedParams(_translationString: string, paramsArray?: 
 // In the home page Controller
 import translations from '../translations/lang/en/pages/home.js';
 export function index(req, res, next) {
-	return res.render("pages/home", {
-		translations: translations
-	});
+    return res.render("pages/home", {
+        translations: translations
+    });
 }
 
 // The exported object from /src/translations/lang/en/pages/home.js
 export default {
-	title: "I am :appName :pageName page!"
+    title: "I am :appName :pageName page!"
 };
 
 // In /src/views/pages/home.ejs
@@ -1246,40 +1246,40 @@ import { validate } from "../middleware/validate.js";
 import { getTranslationForLocale } from "../lib/locale/locale.js";
 
 index.middleware = [await validate([
-	body("email")
-		.exists() // check if email post parameter exists in body
-		.withMessage((value, { req, location, path }) => {
-			/* 
-				** Get's the `exists` key value from the exported object from 
-				** '/src/translations/lang/bg/validation.ts' and passes another 
-				** translated string to replace the dynamic variable declared 
-				** by `:argument` in it.
-			*/
-			return getTranslationForLocale( 
-				req.locale + "/validation.exists",
-				{
-					attribute: getTranslationForLocale(
-						req.locale + "/pages/auth/register.validation.email"
-					),
-				}
-			);
-		})
-		.bail()
-		.isString() //check if the email post parameter is string
-		.withMessage((value, { req, location, path }) => {
-			return getTranslationForLocale(
-				req.locale + "/validation.string",
-				{
-					attribute: getTranslationForLocale(
-						req.locale + "/pages/auth/register.validation.email"
-					),
-				}
-			);
-		})
-		.bail(),
-	body("name")
-		.exists()
-		...
+    body("email")
+        .exists() // check if email post parameter exists in body
+        .withMessage((value, { req, location, path }) => {
+            /* 
+                ** Get's the `exists` key value from the exported object from 
+                ** '/src/translations/lang/bg/validation.ts' and passes another 
+                ** translated string to replace the dynamic variable declared 
+                ** by `:argument` in it.
+            */
+            return getTranslationForLocale( 
+                req.locale + "/validation.exists",
+                {
+                    attribute: getTranslationForLocale(
+                        req.locale + "/pages/auth/register.validation.email"
+                    ),
+                }
+            );
+        })
+        .bail()
+        .isString() //check if the email post parameter is string
+        .withMessage((value, { req, location, path }) => {
+            return getTranslationForLocale(
+                req.locale + "/validation.string",
+                {
+                    attribute: getTranslationForLocale(
+                        req.locale + "/pages/auth/register.validation.email"
+                    ),
+                }
+            );
+        })
+        .bail(),
+    body("name")
+        .exists()
+        ...
 ])
 ```
 
@@ -1295,10 +1295,10 @@ import { sendVerifyEmailMail } from "../../mail/sendVerifyEmailMail.js";
 ...
 // send the email with the verification link to the client
 await sendVerifyEmailMail(
-	user.email,
-	user.name,
-	emailVerificationLink.link,
-	req.locale
+    user.email,
+    user.name,
+    emailVerificationLink.link,
+    req.locale
 );
 
 
@@ -1313,52 +1313,52 @@ import { setLoggerExtraInfo } from "../lib/logger/logger.js";
 import { getTranslationForLocale } from "../lib/locale/locale.js";
 
 export async function sendVerifyEmailMail(
-	email: string,
-	name: string,
-	emailVerificationLink: string,
-	locale: string | undefined
+    email: string,
+    name: string,
+    emailVerificationLink: string,
+    locale: string | undefined
 ) {
-	try {
-		let transporter = nodemailer.createTransport(transporterConfig);
-		
-		let data = await renderFile(
-			global.__viewsDirname + "/mail/verifyEmail.ejs",
-			{
-				email: email,
-				name: name,
-				locale: locale,
-				emailVerificationLink: emailVerificationLink,
-				__: getTranslationForLocale,
-			}
-		);
+    try {
+        let transporter = nodemailer.createTransport(transporterConfig);
 
-		let mail = await transporter.sendMail({
-			from: {
-				name: mailServerConfig.name,
-				address: mailServerConfig.from,
-			},
-			to: [
-				{
-					name: name ? name : "",
-					address: email,
-				},
-			],
-			subject: getTranslationForLocale(
-				locale + "/emails/verifyEmail.subject"
-			),
-			text: getTranslationForLocale(
-				locale + "/emails/verifyEmail.subjectText"
-			),
-			html: data,
-		});
+        let data = await renderFile(
+            global.__viewsDirname + "/mail/verifyEmail.ejs",
+            {
+                email: email,
+                name: name,
+                locale: locale,
+                emailVerificationLink: emailVerificationLink,
+                __: getTranslationForLocale,
+            }
+        );
 
-		return mail;
-	} catch (err: any) {
-		err = setLoggerExtraInfo(err, {
-			reason: `There was a problem sending the email to: ${email}`,
-		});
-		throw err;
-	}
+        let mail = await transporter.sendMail({
+            from: {
+                name: mailServerConfig.name,
+                address: mailServerConfig.from,
+            },
+            to: [
+                {
+                    name: name ? name : "",
+                    address: email,
+                },
+            ],
+            subject: getTranslationForLocale(
+                locale + "/emails/verifyEmail.subject"
+            ),
+            text: getTranslationForLocale(
+                locale + "/emails/verifyEmail.subjectText"
+            ),
+            html: data,
+        });
+
+        return mail;
+    } catch (err: any) {
+        err = setLoggerExtraInfo(err, {
+            reason: `There was a problem sending the email to: ${email}`,
+        });
+        throw err;
+    }
 }
 ```
 
@@ -1401,21 +1401,21 @@ If the **second argument** is of type `string` it should be the `query string` t
 ```js
 // If we have global.namedRoutes with the following named routes:
 global.namedRoutes = [
-	{
-		method: 'get',
-		pattern: '/blog',
-		controller: 'BlogController@archive',
-		name: 'en_get_blog_.archive',
-		pathTrace: 'routes.blogArchive'
-	},
-	{
-		method: 'get',
-		pattern: '/bg/blog',
-		controller: 'BlogController@archive',
-		name: 'bg_get_blog_.archive',
-		pathTrace: 'routes.blogArchive'
-	},
-	...
+    {
+        method: 'get',
+        pattern: '/blog',
+        controller: 'BlogController@archive',
+        name: 'en_get_blog_.archive',
+        pathTrace: 'routes.blogArchive'
+    },
+    {
+        method: 'get',
+        pattern: '/bg/blog',
+        controller: 'BlogController@archive',
+        name: 'bg_get_blog_.archive',
+        pathTrace: 'routes.blogArchive'
+    },
+    ...
 ]
 
 /*
@@ -1423,8 +1423,8 @@ global.namedRoutes = [
  ** without second argument
 */
 [
-	{ slug: '/blog', language: 'en' },
-	{ slug: '/bg/blog', language: 'bg' }
+    { slug: '/blog', language: 'en' },
+    { slug: '/bg/blog', language: 'bg' }
 ]
 ```
 
@@ -1432,33 +1432,33 @@ global.namedRoutes = [
 ```js
 // Output in EJS from calling getAlternateLanguagesUrls(locals.urlInfo, "?age=30&gender=male") with second argument of type 'string'
 [
-	{ slug: '/blog?age=30&gender=male', language: 'en' },
-	{ slug: '/bg/blog?age=30&gender=male', language: 'bg' }
+    { slug: '/blog?age=30&gender=male', language: 'en' },
+    { slug: '/bg/blog?age=30&gender=male', language: 'bg' }
 ]
 ```
 
 ###### First way
--	If the **second argument** is of type `array with objects`, where the object property `parameters` is of type `array with strings`, then the `getAlternateLanguagesUrls` will look for dynamic variables in the route to replace them in the order they are passed.
+-    If the **second argument** is of type `array with objects`, where the object property `parameters` is of type `array with strings`, then the `getAlternateLanguagesUrls` will look for dynamic variables in the route to replace them in the order they are passed.
 ```js
 /* 
  ** If route is '/blog/:slug1/:slug2' and we pass the following array to 
  ** the 'getAlternateLanguagesUrls' function as a second argument
 */
 [
-	{
-		language: 'en',
-		parameters: [
-			'food',
-			'dogs'
-		]
-	},
-	{
-		language: 'bg',
-		parameters: [ 
-			'hrana',
-			'kucheta'
-		]
-	}
+    {
+        language: 'en',
+        parameters: [
+            'food',
+            'dogs'
+        ]
+    },
+    {
+        language: 'bg',
+        parameters: [ 
+            'hrana',
+            'kucheta'
+        ]
+    }
 ]
 // Output:
 // English url: /blog/food/dogs
@@ -1466,21 +1466,21 @@ global.namedRoutes = [
 ```
 
 ###### Second way
--	If the **second argument** is of type `array with objects`, where the object property `parameters` is of type `string` it will add it directly as a slug.
+-    If the **second argument** is of type `array with objects`, where the object property `parameters` is of type `string` it will add it directly as a slug.
 ```js
 /*
  ** If route is '/blog/:slug1/:slug2' and we pass the following array to 
  ** the 'getAlternateLanguagesUrls' function as a second argument:
 */
 [
-	{
-		language: 'en',
-		parameters: "/blog/food/dogs"
-	},
-	{
-		language: 'bg',
-		parameters: "/random/indeed"
-	}
+    {
+        language: 'en',
+        parameters: "/blog/food/dogs"
+    },
+    {
+        language: 'bg',
+        parameters: "/random/indeed"
+    }
 ]
 // Output:
 // English url: /blog/food/dogs
@@ -1488,7 +1488,7 @@ global.namedRoutes = [
 ```
 
 ###### Third way
--	The object property `parameters` in the `array of objects` could be a `string` for some of the objects and `array of strings` for the others (mixed).
+-    The object property `parameters` in the `array of objects` could be a `string` for some of the objects and `array of strings` for the others (mixed).
 
 An additional feature that will work for all the three ways of using the **second argument** is that each object in the `array of objects` could accept one more parameter named `queryStrings` which is of type `string` and will attach its value at the end of the alternate url.
 ```js
@@ -1497,19 +1497,19 @@ An additional feature that will work for all the three ways of using the **secon
  ** the 'getAlternateLanguagesUrls' function as a second argument:
 */
 [
-	{
-		language: 'en',
-		parameters: "/random/food/dogs",
-		queryStrings: "?meet=beef&baked=soft"
-	},
-	{
-		language: 'bg',
-		parameters: [ 
-			'hrana',
-			'kucheta'
-		],
-		queryStrings: "?meet=teleshko&baked=alangle"
-	}
+    {
+        language: 'en',
+        parameters: "/random/food/dogs",
+        queryStrings: "?meet=beef&baked=soft"
+    },
+    {
+        language: 'bg',
+        parameters: [ 
+            'hrana',
+            'kucheta'
+        ],
+        queryStrings: "?meet=teleshko&baked=alangle"
+    }
 ]
 // Output:
 // English url: /random/food/dogs?meet=beef&baked=soft
@@ -1525,8 +1525,8 @@ export const all_locale: string[] = ['en', 'bg'];
 
 // Alternates array will look like
 [
-	{ slug: '/blog/dogs', language: 'en' },
-	{ slug: '/bg/blog/kucheta', language: 'bg' }
+    { slug: '/blog/dogs', language: 'en' },
+    { slug: '/bg/blog/kucheta', language: 'bg' }
 ]
 
 
@@ -1535,8 +1535,8 @@ export const all_locale: string[] = ['bg', 'en'];
 
 // The result will be:
 [
-	{ slug: '/bg/blog/kucheta', language: 'bg' },
-	{ slug: '/blog/dogs', language: 'en' }
+    { slug: '/bg/blog/kucheta', language: 'bg' },
+    { slug: '/blog/dogs', language: 'en' }
 ]
 ```
 
@@ -1557,84 +1557,84 @@ For example if we have two translations of a blog post, where the main language 
 singleBlogPost.middleware = [setLocale, setPathToLocals];
 
 export async function singleBlogPost(
-	req: Request,
-	res: Response,
-	next: NextFunction
+    req: Request,
+    res: Response,
+    next: NextFunction
 ) {
-	try {
-		// get the requested blog post
-		let post = await new Blog()
-			.where("language", "=", req.locale as string)
-			.where("slug", "=", req.params.slug as string)
-			.orderBy("created_at", "desc")
-			.first();
-		/* 
-			post = {
-				id: '9',
-				slug: 'dogs',
-				language: 'en',
-				common_ids: 9,
-				title: 'Dogs',
-				content: 'Dogs are cute',
-				created_at: 2022-03-15T02:55:32.000Z,
-				updated_at: null
-			} 
-		*/
+    try {
+        // get the requested blog post
+        let post = await new Blog()
+            .where("language", "=", req.locale as string)
+            .where("slug", "=", req.params.slug as string)
+            .orderBy("created_at", "desc")
+            .first();
+        /* 
+            post = {
+                id: '9',
+                slug: 'dogs',
+                language: 'en',
+                common_ids: 9,
+                title: 'Dogs',
+                content: 'Dogs are cute',
+                created_at: 2022-03-15T02:55:32.000Z,
+                updated_at: null
+            } 
+        */
 
-		if (!post) {
-			res.status(404);
-			return next();
-		}
+        if (!post) {
+            res.status(404);
+            return next();
+        }
 
-		// get the alternate blog posts
-		let alternatePosts = await new Blog()
-			.where("common_ids", "=", post.common_ids.toString())
-			.get(["id", "language", "slug"]);
-		/* 
-			alternatePosts = [
-				{ common_ids: 9, language: 'en', slug: 'dogs' },
-				{ common_ids: 9, language: 'bg', slug: 'kucheta' }
-			]
-		*/
+        // get the alternate blog posts
+        let alternatePosts = await new Blog()
+            .where("common_ids", "=", post.common_ids.toString())
+            .get(["id", "language", "slug"]);
+        /* 
+            alternatePosts = [
+                { common_ids: 9, language: 'en', slug: 'dogs' },
+                { common_ids: 9, language: 'bg', slug: 'kucheta' }
+            ]
+        */
 
-		if (!alternatePosts) {
-			res.status(404);
-			return next();
-		}
+        if (!alternatePosts) {
+            res.status(404);
+            return next();
+        }
 
 
-		/* 
-		 ** structure them so we could pass them to 
-		 ** the getAlternateLanguagesUrls() helper as a second argument.
-		*/
-		let alternates: customAlternateUrlsParamsArr = [];
-		alternatePosts.map((x) => {
-			return alternates.push({
-				language: x.language,
-				parameters: [x.slug]
-			});
-		});
-		/*
-			alternates = [
-				{ language: 'en', parameters: [ 'dogs' ] },
-				{ language: 'bg', parameters: [ 'kucheta' ] }
-			]
-		*/
+        /* 
+         ** structure them so we could pass them to 
+         ** the getAlternateLanguagesUrls() helper as a second argument.
+        */
+        let alternates: customAlternateUrlsParamsArr = [];
+        alternatePosts.map((x) => {
+            return alternates.push({
+                language: x.language,
+                parameters: [x.slug]
+            });
+        });
+        /*
+            alternates = [
+                { language: 'en', parameters: [ 'dogs' ] },
+                { language: 'bg', parameters: [ 'kucheta' ] }
+            ]
+        */
 
-		/*
-		 ** attach it to the res.locals.alternates so it could be used globally 
-		 ** from the EJS files instead of passing it down the chain until it reaches
-		 ** the function 'getAlternateLanguagesUrls()' which is positioned 
-		 ** in the template '<head></head>' DOM element.
-		*/
-		res.locals.alternates = alternates;
+        /*
+         ** attach it to the res.locals.alternates so it could be used globally 
+         ** from the EJS files instead of passing it down the chain until it reaches
+         ** the function 'getAlternateLanguagesUrls()' which is positioned 
+         ** in the template '<head></head>' DOM element.
+        */
+        res.locals.alternates = alternates;
 
-		return res.render("pages/blog/singleBlogPost", {
-			post: post,
-		});
-	} catch (err) {
-		return next(err);
-	}
+        return res.render("pages/blog/singleBlogPost", {
+            post: post,
+        });
+    } catch (err) {
+        return next(err);
+    }
 }
 
 // In the template EJS
@@ -1643,8 +1643,8 @@ export async function singleBlogPost(
 // Output
 /*
  locals.alternateSlugs = [
-	{ slug: '/blog/dogs', language: 'en' },
-	{ slug: '/bg/blog/kucheta', language: 'bg' }
+    { slug: '/blog/dogs', language: 'en' },
+    { slug: '/bg/blog/kucheta', language: 'bg' }
  ]
 */
 
@@ -1657,11 +1657,11 @@ export async function singleBlogPost(
 // For example we could display it this way in the <head></head>
 <head>
 <% if(locals.alternateSlugs){
-	locals.alternateSlugs.map(slug=>{
-		%>
-			<link rel="alternate" hreflang="<%= slug.language; %>" href="<%= slug.slug; %>">
-		<%
-	});
+    locals.alternateSlugs.map(slug=>{
+        %>
+            <link rel="alternate" hreflang="<%= slug.language; %>" href="<%= slug.slug; %>">
+        <%
+    });
 }; %>
 </head>
 <body>
@@ -1702,10 +1702,10 @@ Remember when in the [`paginate()`](#paginate-method) is mentioned that when you
 ```js
 // In Controller
 let blogPosts = await new Blog(req, res) // we need to pass the req and res here only if we are using pagination
-	.where("language", "=", req.locale as string)
-	.orderBy("created_at", "desc")
-	.paginate(1)
-	.get();
+    .where("language", "=", req.locale as string)
+    .orderBy("created_at", "desc")
+    .paginate(1)
+    .get();
 ```
 
 This is required because the [`paginate()`](#paginate-method) method attaches a `locals.pagination` object which contains the entire information we need to call the pagination helper with the required arguments:
@@ -1715,11 +1715,11 @@ This is required because the [`paginate()`](#paginate-method) method attaches a 
  ** at the moment are on page 5 in the url: https://www.example.com/blog?page=5&sky=blue
 */
 locals.pagination = {
-	curPage: 5, // the page we are currently at which is retrieved from the query parameter '?page=5'
-	limit: 1, // how many blog posts to display per page
-	path: '/blog', // the current path
-	queryStr: { page: '5', sky: 'blue' }, // all the query strings of the opened page
-	totalCnt: '11' // total count of the blog posts
+    curPage: 5, // the page we are currently at which is retrieved from the query parameter '?page=5'
+    limit: 1, // how many blog posts to display per page
+    path: '/blog', // the current path
+    queryStr: { page: '5', sky: 'blue' }, // all the query strings of the opened page
+    totalCnt: '11' // total count of the blog posts
 }
 ```
 
@@ -1752,7 +1752,7 @@ The default operational error handling is done via [logger](#logger), but you co
 // in /src/app.ts
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-	...
+    ...
 }
 ```
 
@@ -1785,8 +1785,8 @@ What about failing to catch a rejected promise? Does it make sense to keep the a
 import { terminate } from "./lib/errors/terminate.js";
 
 const exitHandler = terminate(server, {
-	coredump: false,
-	timeout: 500,
+    coredump: false,
+    timeout: 500,
 });
 
 /* 
@@ -1847,10 +1847,10 @@ import { logger } from '/src/lib/logger/logger.ts'
 try {
 ...
 } catch (err: any) {
-	logger.error(err);
-	return res
-			.status(500)
-			.json({code: 500, message: "Your operational error message"});
+    logger.error(err);
+    return res
+        .status(500)
+        .json({code: 500, message: "Your operational error message"});
 }
 ```
 
@@ -1862,7 +1862,7 @@ In case you want to let the default error handler to print the error just pass t
 try {
 ...
 } catch (err: any) {
-	return next(err);
+    return next(err);
 }
 ```
 
