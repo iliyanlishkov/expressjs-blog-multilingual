@@ -58,6 +58,16 @@ git clone https://github.com/iliyanlishkov/expressjs-blog-multilingual.git
 npm install
 ```
 3. Create and configure your Postgre DB (you will find it exported in the project folder)
+```
+// log into postgre
+sudo -u postgres psql
+
+// create database with name app
+postgres=# create database app;
+
+// import the db
+psql -d app -f db.sql
+```
 4. Make a copy of env.example file with name .env and configure it
 5. Run the app:
 ```
