@@ -1,0 +1,67 @@
+<% 
+if(locals.pagination) {
+	let queryStrings = Object.keys(locals.pagination.queryStr);
+	let queryString = "";
+	for(var i=0; i < queryStrings.length; i++) {
+		if(queryStrings[i] != 'page'){
+			queryString += ("&" + queryStrings[i] + "=" + locals.pagination.queryStr[queryStrings[i]]);
+		};
+	};
+
+	let curPage = Number(locals.pagination.curPage);
+	let limit = Number(locals.pagination.limit);
+	let totalCnt = Number(locals.pagination.totalCnt);
+	let totalPageCnt = Math.ceil(totalCnt / limit);
+
+	let showPrev = false;
+	if(curPage > 1){
+		showPrev = true;
+	};
+
+	let showNext = false;
+	if( curPage * limit < totalCnt){
+		showNext = true;
+	};
+
+	let pagesArray = [];
+	pagesArray = locals.helpers.createPaginationArr(totalPageCnt, curPage, 2);
+	
+
+	%>
+	<div id="default-pagination">
+		<% 
+		if(showPrev) {
+			%>
+			<a href="<%= locals.pagination.path + `?page=${curPage-1}${queryString}`;  %>"><</a>
+			<%
+		};
+		%>
+
+		<%
+		for(let i=0; i < pagesArray.length; i++){
+			if(typeof pagesArray[i] === 'string'){
+				%>
+				<span><%= pagesArray[i]; -%></span>
+				<%
+			} else {
+				%>
+				<a href="<%= locals.pagination.path + `?page=${pagesArray[i]}${queryString}`;  -%>" class="pagination-page<%= pagesArray[i] == curPage ? ' active' : '' %>"><%= pagesArray[i]; -%></a>
+				<%
+			};
+		};
+		%>
+
+		<% 
+		if(showNext) {
+			%>
+			<a href="<%= locals.pagination.path + `?page=${curPage+1}${queryString}`;  %>">></a>
+			<%
+		};
+		%>
+	</div>
+	<%
+};
+%>
+
+
+<!-- TODO IMPLEMENT HASH ATTACHING -->

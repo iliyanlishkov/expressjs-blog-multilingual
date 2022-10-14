@@ -1,0 +1,10 @@
+<%- include( '../../layouts/default/header.ejs', {
+	layoutTitle: post?.title,
+	layoutDescription: post?.meta_desc }
+); -%>
+	
+<h1><%= post?.title; %></h1>
+<div><%- post?.content; %></div>
+
+
+<%- include('../../layouts/default/footer.ejs'); %>

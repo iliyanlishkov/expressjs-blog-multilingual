@@ -1,0 +1,9 @@
+<%- include( '../../layouts/default/header.ejs', {
+layoutNoindex: true,
+layoutTitle:locals.__(locals.locale + '/pages/errors/404.layoutTitle'),
+layoutDescription:locals.__(locals.locale + '/pages/errors/404.layoutDescription') }
+); -%>
+
+<h1><%= locals.__(locals.locale + '/pages/errors/404.title') %></h1>
+
+<%- include('../../layouts/default/footer.ejs'); %>

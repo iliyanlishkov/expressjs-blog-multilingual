@@ -1,0 +1,67 @@
+<%- include('../../layouts/default/header.ejs', { 
+	layoutTitle: locals.__(locals.locale + '/pages/auth/register.layoutTitle'), 
+	layoutDescription: locals.__(locals.locale + '/pages/auth/register.layoutDescription'), 
+}); -%>
+
+<h1><%= locals.__(locals.locale + '/pages/auth/register.title') %></h1>
+
+
+<%- include('../../includes/alerts/default.ejs'); -%>
+
+<form
+	action="<%= locals.route('post_register_.handleRegistrationForm'); %>"
+	method="POST"
+	id="register-form"
+>
+	<input type="text" required name="name" minlength="1" maxlength="20" placeholder="<%= locals.__(locals.locale + '/pages/auth/register.placeholders.name') %>" />
+	<input type="email" required name="email" minlength="7" maxlength="100" placeholder="<%= locals.__(locals.locale + '/pages/auth/register.placeholders.email') %>" />
+	<input type="password" required name="password" minlength="5" maxlength="100" placeholder="<%= locals.__(locals.locale + '/pages/auth/register.placeholders.password') %>" />
+	<button><%= locals.__(locals.locale + '/pages/auth/register.registerBtn') %></button>
+</form>
+
+<% let layoutScripts = `
+<script>
+	const registerForm = document.getElementById("register-form");
+	registerForm.addEventListener("submit", (e) => {
+		e.preventDefault();
+
+		fetch("`+ locals.route('post_register_.handleRegistrationForm') +`", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json;charset=UTF-8",
+				"Request-Language": "` + locals.locale + `",
+				"CSRF-Token": "` + csrfToken + `",
+			},
+			body: JSON.stringify(
+				Object.fromEntries(new FormData(registerForm))
+			),
+		})
+			.then((response) => Promise.all([response, response.json()]))
+			.then(([response, json]) => {
+				if (response.status === 400) {
+					toggleAlertsMsg(true, "error", json);
+				} else if (!response.ok) {
+					throw json;
+				} else {
+					// toggleAlertsMsg(
+					// 	true,
+					// 	"success",
+					// 	"` + locals.__(locals.locale + '/pages/auth/register.registrationSuccess') + `"
+					// );
+					// return window.location.href = json.res.redirectUrlOnSuccess;
+					toggleAlertsMsg(
+						true,
+						"success",
+						json.res.successMsg
+					);
+					
+					registerForm.remove();
+				};
+			})
+			.catch(error => {
+				defaultCatchErrorHandler(error);
+			});
+	});
+</script>
+`; %> <%- include('../../layouts/default/footer.ejs', {layoutScripts:
+layoutScripts}); -%>

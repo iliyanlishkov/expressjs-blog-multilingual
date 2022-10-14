@@ -1,0 +1,18 @@
+<a href="<%= locals.route(`${locals.locale}_get_home_.index`); %>"><%= locals.__(locals.locale + '/partials/default/nav.home') %></a>
+<a href="<%= locals.route(`${locals.locale}_get_blog_.archive`); %>"><%= locals.__(locals.locale + '/partials/default/nav.blog') %></a>
+<%
+if(locals.isLoggedIn){
+	%>
+		<a href="<%= locals.route(`${locals.locale}_get_profile_.index`); %>"><%= locals.__(locals.locale + '/partials/default/nav.profile') %></a>
+		<a href="<%= locals.route(`${locals.locale}_get_logout_.handleLogout`); %>"><%= locals.__(locals.locale + '/partials/default/nav.logout') %></a>
+		
+	<%
+} else {
+	%>
+		<a href="<%= locals.route(`${locals.locale}_get_register_.index`,{id:5, mode:'dark', someObj: {a:4}, 5:'f'}, 'somequeryparams=15','somequeryparams2=10', '#somehash'); %>"><%= locals.__(locals.locale + '/partials/default/nav.register') %></a>
+		<a href="<%= locals.route(`${locals.locale}_get_login_.index`); %>"><%= locals.__(locals.locale + '/partials/default/nav.login') %></a>
+	<%
+};
+%>
+
+<%- include('../../includes/languageSwitch.ejs'); %> 

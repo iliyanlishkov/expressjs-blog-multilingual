@@ -1,0 +1,6 @@
+*
+!.gitignore
+!errors.log.example
+!exceptions.log.example
+!rejections.log.example
+!ossignals.log.example

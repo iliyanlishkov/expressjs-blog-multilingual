@@ -1,0 +1,39 @@
+
+<% locals.alternateSlugs = locals.urlInfo ? locals.helpers.getAlternateLanguagesUrls(locals.urlInfo, locals.alternates) : null %>
+<!DOCTYPE html>
+<html lang="<%= (typeof locals.locale !== 'undefined' ? locals.locale : 'en'); %>">
+	<head>
+		<meta charset="utf-8">
+		<link rel="shortcut icon" href="/favicon.ico" /> <!-- TODO -->
+		<% if(typeof layoutNoindex !== 'undefined') { -%>
+			<meta name="robots" content="noindex, nofollow" />
+		<% }; -%>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title><%= (typeof layoutTitle !== 'undefined' && layoutTitle !== '' ? layoutTitle : 'App title'); %></title>
+		<meta name="description" content="<%= (typeof layoutDescription !== 'undefined' && layoutDescription !== '' ? layoutDescription : 'App backup meta description'); -%>" />
+		<% if(locals?.urlInfo?.path){
+			%>
+				<link rel="canonical" href="<%= locals.urlInfo.path; %>" />
+			<%
+		}; %>
+		
+		<% if(locals.alternateSlugs){
+			locals.alternateSlugs.map(slug=>{
+				%>
+					<link rel="alternate" hreflang="<%= slug.language; %>" href="<%= slug.slug; %>">
+				<%
+			});
+		}; %>
+		
+		<meta name="keywords" content="<%= (typeof layoutKeywords !== 'undefined' && layoutKeywords !== '' ? layoutKeywords : 'App backup keywords'); %>" />
+		<meta name="author" content="App" />
+
+		<link href="/css/styles.css" rel="stylesheet" />
+		<%- (typeof layoutStyles !== 'undefined' ? layoutStyles : ''); -%>
+	</head>
+	<body>
+		<div id="app"> <!-- open app div-->
+			<header>
+			<%- include('../../partials/default/nav.ejs'); %>
+			</header>

@@ -1,0 +1,58 @@
+<%- include('../../layouts/default/header.ejs', { 
+	layoutTitle: locals.__(locals.locale + '/pages/auth/emailVerificationStatus.layoutTitle'), 
+	layoutDescription: locals.__(locals.locale + '/pages/auth/emailVerificationStatus.layoutDescription'),
+	layoutNoindex: true
+}); -%>
+
+
+<%- include('../../includes/alerts/default.ejs'); -%>
+
+
+
+<% if(!emailVerified){
+	%>
+	<a
+		href="<%= locals.route(locals.locale + '_get_resend_email_verification_.resendEmailVerificationLinkForm'); %>"
+		><%= locals.__(locals.locale +
+		'/pages/auth/login.resendEmailVerificationLinkAnchorText') %></a
+	>
+	<%
+}%>
+
+
+<% let layoutScripts = ``;
+if(!emailVerified) {
+	layoutScripts = `
+		<script>
+			toggleAlertsMsg(true, "error", {
+				errors: [
+					{
+						location: "body",
+						msg: "`+ locals.__(locals.locale + '/pages/auth/emailVerificationStatus.invalidHash') +`",
+						param: "hash",
+					},
+				],
+				msg: "Email verification fails!",
+				success: false,
+			});
+		</script>
+	`;
+} else {
+	layoutScripts = `
+		<script>
+			toggleAlertsMsg(true, "success", {
+				errors: [
+					{
+						location: "body",
+						msg: "`+ locals.__(locals.locale + '/pages/auth/emailVerificationStatus.accountConfirmed') +`",
+						param: "hash",
+					},
+				],
+				msg: "Email ferification completed!",
+				success: true,
+			});
+		</script>
+	`;
+}
+ %> <%- include('../../layouts/default/footer.ejs', {layoutScripts:
+layoutScripts}); -%>

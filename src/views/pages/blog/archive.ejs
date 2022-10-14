@@ -1,0 +1,29 @@
+<%- include( '../../layouts/default/header.ejs', {
+	layoutTitle:locals.__(locals.locale + '/pages/blog/archive.layoutTitle'),
+	layoutDescription:locals.__(locals.locale + '/pages/blog/archive.layoutDescription') }
+	); -%>
+	
+	<h1><%= locals.__(locals.locale + '/pages/blog/archive.title') %></h1>
+	<% 
+		if(blogPosts){
+			blogPosts.map(post=>{
+				%>
+				<div>
+					<hr>
+					<p>Title:&nbsp;<%= post.title %></p>
+					<p>Created at:&nbsp;<%= post.created_at %></p>
+					<p>Author:&nbsp;<%= post.author %></p>
+					<p>Meta:&nbsp;<%= post.meta_desc %></p>
+					<p><a href="<%= locals.route(`${locals.locale}_get_blog_.singleBlogPost`,{slug:post.slug}); %>">Read more</a></p>
+				</div>
+				<%
+			})
+		}; 
+	%>
+
+	<%- include('../../includes/pagination/paginator.ejs'); %>
+	
+	<%- include('../../layouts/default/footer.ejs'); %>
+
+	
+	
