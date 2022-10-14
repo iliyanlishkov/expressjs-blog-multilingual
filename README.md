@@ -92,7 +92,7 @@ process.env.APP_PORT
 
 ### Accessing CONFIG Values
 All the config values are directly imported in the files where they will be used.
-```
+```js
 import { mailServerConfig } from "../config/mail/mailServerConfig.js";
 ```
 
@@ -285,10 +285,16 @@ You are always free to do the things in the standard Express JS way, but to take
 ```js
 export default [
 	{
-		method: "get", // method
-		path: "routes.home", // path in /src/translations/lang/:lang/routes.ts folder from where the pattern will be get
-		controller: "HomeController@index", // controller name and method located in /src/controllers/...
-		name: "_get_home_.index", // name of the route which will be prefixed with language. Final route name will be: en_get_home_.index. It must begin and end with underscore due to parsing purposes.
+		// Request method
+		method: "get", 
+		// Path in /src/translations/lang/:lang/routes.ts folder from where the pattern will be get
+		path: "routes.home", 
+		// Controller name and method located in /src/controllers/...
+		controller: "HomeController@index", 
+		// Name of the route which will be prefixed with language. 
+		// Final route name will be: en_get_home_.index. 
+		// It must begin and end with underscore due to parsing purposes.
+		name: "_get_home_.index", 
 	}
 ];
 ```
