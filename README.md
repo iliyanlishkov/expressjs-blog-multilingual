@@ -49,10 +49,17 @@ Don't forget that this is just the base for a bigger project. There is a lot mor
 2. Redis
 3. Node JS
 ## Installation
-1. Clone the repository and install the packages with "npm install"
-2. Make a copy of env.example file with name .env
-3. Create and configure your Postgre DB (you will find the exported DB in the repository)
-4. Run the app:
+1. Clone the repository
+```
+git clone https://github.com/iliyanlishkov/expressjs-blog-multilingual.git
+```
+2. Run `npm install`
+```
+npm install
+```
+3. Create and configure your Postgre DB (you will find it exported in the project folder)
+4. Make a copy of env.example file with name .env and configure it
+5. Run the app:
 ```
 npm run dev:nodemon
 ```
