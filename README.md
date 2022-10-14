@@ -53,7 +53,7 @@ Don't forget that this is just the base for a bigger project. There is a lot mor
 ```
 git clone https://github.com/iliyanlishkov/expressjs-blog-multilingual.git
 ```
-2. Run `npm install`
+2. Install the packages
 ```
 npm install
 ```
