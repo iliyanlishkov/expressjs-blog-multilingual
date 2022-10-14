@@ -284,18 +284,18 @@ You are always free to do the things in the standard Express JS way, but to take
 `/src/routes/localized.ts`
 ```js
 export default [
-	{
-		// Request method
-		method: "get", 
-		// Path in /src/translations/lang/:lang/routes.ts folder from where the pattern will be get
-		path: "routes.home", 
-		// Controller name and method located in /src/controllers/...
-		controller: "HomeController@index", 
-		// Name of the route which will be prefixed with language. 
-		// Final route name will be: en_get_home_.index. 
-		// It must begin and end with underscore due to parsing purposes.
-		name: "_get_home_.index", 
-	}
+    {
+        // Request method
+        method: "get", 
+        // Path in /src/translations/lang/:lang/routes.ts folder from where the pattern will be get
+        path: "routes.home", 
+        // Controller name and method located in /src/controllers/...
+        controller: "HomeController@index", 
+        // Name of the route which will be prefixed with language. 
+        // Final route name will be: en_get_home_.index. 
+        // It must begin and end with underscore due to parsing purposes.
+        name: "_get_home_.index", 
+    }
 ];
 ```
 
