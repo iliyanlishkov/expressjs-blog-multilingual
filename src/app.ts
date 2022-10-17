@@ -42,6 +42,9 @@ import { terminate } from "./lib/errors/terminate.js";
 // Create the Express application
 const app = express();
 
+// Remove the X-Powered-By header
+app.disable('x-powered-by');
+
 /**
  * ----------- GENERAL MIDDLEWARES -------------
  */
