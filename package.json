@@ -24,7 +24,7 @@
 	},
 	"homepage": "https://github.com/iliyanlishkov/expressjs-blog-multilingual#readme",
 	"scripts": {
-		"dev:server": "if sudo lsof -t -i:3000; then sudo kill -9 $(sudo lsof -t -i:3000); fi && rm -rf ./dist && npx tsc && node -r dotenv/config ./dist/app.js dotenv_config_path=./.env",
+		"dev:server": "if sudo lsof -t -i:3000; then sudo kill -9 $(sudo lsof -t -i:3000); fi && rm -rf ./dist && npx tsc && node --trace-warnings -r dotenv/config ./dist/app.js dotenv_config_path=./.env",
 		"dev:nodemon": "nodemon --exec \"npm run dev:server\" --watch src --watch tsconfig.json --watch .env --ext \"*\""
 	},
 	"dependencies": {
