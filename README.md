@@ -73,7 +73,7 @@ psql -d app -f db.sql
 ```
 npm run dev:nodemon
 ```
-5. Open http://localhost:3000/ and let the customizing begin!
+5. Open https://localhost:3000/ and let the customizing begin!
 
 ## Configuration
 All of the configuration files for the framework are stored in the [The `config` Directory](#the-config-directory). 
@@ -115,6 +115,7 @@ The default application structure is intended to provide a great starting point 
 #### [The App Directory](#the-app-directory-1)
 - [The `config` Directory](#the-config-directory)
 - [The `controllers` Directory](#the-controllers-directory)
+- [The `keys` Directory](#the-keys-directory)
 - [The `lib` Directory](#the-lib-directory)
 - [The `mail` Directory](#the-mail-directory)
 - [The `middleware` Directory](#the-middleware-directory)
@@ -145,6 +146,8 @@ The `storage` directory contains all logs and caches.
 The `config` directory, as the name implies, contains all of your application's configuration files. It's a great idea to read through all of these files and familiarize yourself with all of the options available to you.
 #### #The Controllers Directory
 Almost all of the logic to handle requests entering your application will be placed in this directory.
+#### #The Keys Directory
+The `key` directory contains the key and cert files for the HTTP2 server.
 #### #The Lib Directory
 The `lib` directory contains all custom written libraries for example the Controllers/Routes match library, the DB connection library, the Localization library, the Directories parse library etc. 
 
@@ -349,7 +352,7 @@ Now let's create another route group with two routes for login form authenticati
 The login index page is registered the same way as the home page, but you will notice that the `path` for the login form where we post it, doesn't contain a trace to the route that will be retrieved from an object exported by the `/src/translations/lang/:lang/routes.ts` file, but contains the path itself `/post-login`.
 
 
-This means the `http://localhost:3000/post-login` post url won't be registered for each language with prefix, but will be registered only once the way it is, but we could still take advantage of the [Named routes](#url-generation-named-routes) feature and retrieve its value via the route name `post_login_.handleLoginForm` from anywhere in the code: 
+This means the `https://localhost:3000/post-login` post url won't be registered for each language with prefix, but will be registered only once the way it is, but we could still take advantage of the [Named routes](#url-generation-named-routes) feature and retrieve its value via the route name `post_login_.handleLoginForm` from anywhere in the code: 
 
 `/src/views/pages/auth/login.ejs`
 ``` html
@@ -377,7 +380,7 @@ let url = getNamedRouteUrl (
     req.locale + "_get_login_.index"
 );
 
-// url = http://localhost:3000/login
+// url = https://localhost:3000/login
 ```
 
 
@@ -409,7 +412,7 @@ let url = getNamedRouteUrl (
     }
 );
 
-// url = http://localhost:3000/bg/auth/email-verify/378yfe87h837f87364873648276d827f62fg872f686
+// url = https://localhost:3000/bg/auth/email-verify/378yfe87h837f87364873648276d827f62fg872f686
 // As you can see the "someOtherParameter"'s value is not included in the url as there is no such key in the path trace
 ```
 
@@ -428,7 +431,7 @@ let url1 = getNamedRouteUrl (
     "#top"
 );
 
-// url1 = http://localhost:3000/bg/auth/email-verify/378yfe87h837f87364873648276d827f62fg872f686?user=10&country=china#top
+// url1 = https://localhost:3000/bg/auth/email-verify/378yfe87h837f87364873648276d827f62fg872f686?user=10&country=china#top
 
 let url2 = getNamedRouteUrl (
     req.locale + "_get_email_verification_.emailVerificationLinkCheck",
@@ -437,7 +440,7 @@ let url2 = getNamedRouteUrl (
     "#top"
 );
 
-// url2 = http://localhost:3000/bg/auth/email-verify/378yfe87h837f87364873648276d827f62fg872f686?user=10&country=china#top
+// url2 = https://localhost:3000/bg/auth/email-verify/378yfe87h837f87364873648276d827f62fg872f686?user=10&country=china#top
 
 ```
 

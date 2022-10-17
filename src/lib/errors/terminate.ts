@@ -1,8 +1,8 @@
-import { Server } from "http";
+import { Http2SecureServer } from "http2";
 import { logger } from "../logger/logger.js";
 
 const terminate = (
-	server: Server,
+	server: Http2SecureServer,
 	options = { coredump: false, timeout: 500 }
 ) => {
 	// Exit function

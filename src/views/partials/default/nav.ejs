@@ -9,7 +9,7 @@ if(locals.isLoggedIn){
 	<%
 } else {
 	%>
-		<a href="<%= locals.route(`${locals.locale}_get_register_.index`,{id:5, mode:'dark', someObj: {a:4}, 5:'f'}, 'somequeryparams=15','somequeryparams2=10', '#somehash'); %>"><%= locals.__(locals.locale + '/partials/default/nav.register') %></a>
+		<a href="<%= locals.route(`${locals.locale}_get_register_.index`); %>"><%= locals.__(locals.locale + '/partials/default/nav.register') %></a>
 		<a href="<%= locals.route(`${locals.locale}_get_login_.index`); %>"><%= locals.__(locals.locale + '/partials/default/nav.login') %></a>
 	<%
 };

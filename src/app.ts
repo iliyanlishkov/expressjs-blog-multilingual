@@ -8,6 +8,9 @@ global.__viewsDirname = path.resolve(__dirname, "../src/views");
 // dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 import express from "express";
+import http2Express from "http2-express-bridge";
+import fs from "fs";
+import http2 from "http2";
 import compression from "compression";
 import localizedRoutes from "./routes/localized.js";
 import adminRoutes from "./routes/admin.js";
@@ -40,7 +43,14 @@ import { terminate } from "./lib/errors/terminate.js";
 
 
 // Create the Express application
-const app = express();
+const app = http2Express(express);
+
+// add keys
+const options = {
+	key: fs.readFileSync('./src/keys/localhost.key'),
+	cert: fs.readFileSync('./src/keys/localhost.crt'),
+	allowHTTP1: true
+}
 
 // Remove the X-Powered-By header
 app.disable('x-powered-by');
@@ -50,7 +60,7 @@ app.disable('x-powered-by');
  */
 app.use(methodsParser);
 app.use(cookieParser());
-app.use(compression());
+// app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // credentials middleware must be used before cors;
@@ -146,15 +156,17 @@ app.use(
 /**
  * -------------- SERVER ----------------
 */
-// Server listens on http://localhost:3000
+// Server listens on https://localhost:3000
 // app.listen returns http.Server which we will use to handle the programming errors
-const server = app.listen(process.env.APP_PORT, () => {
+const server = http2.createSecureServer(options, app).listen(process.env.APP_PORT, () => {
 	console.log(`Server started at port: ${process.env.APP_PORT}`);
 });
 
 
 /* PROGRAMMING ERRORS HANDLER */
 
+
+// const exitHandler = function(a:number, b: string){return true};
 const exitHandler = terminate(server, {
 	coredump: false,
 	timeout: 500,
