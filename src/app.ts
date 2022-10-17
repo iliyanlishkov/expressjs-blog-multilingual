@@ -47,8 +47,8 @@ const app = http2Express(express);
 
 // add keys
 const options = {
-	key: fs.readFileSync('./src/keys/localhost.key'),
-	cert: fs.readFileSync('./src/keys/localhost.crt'),
+	key: fs.readFileSync(path.resolve(__dirname, "../src/keys/localhost.key")),
+	cert: fs.readFileSync(path.resolve(__dirname, "../src/keys/localhost.crt")),
 	allowHTTP1: true
 }
 
