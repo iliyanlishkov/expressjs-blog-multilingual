@@ -9,9 +9,10 @@ global.__viewsDirname = path.resolve(__dirname, "../src/views");
 
 import express from "express";
 import http2Express from "http2-express-bridge";
+import helmet from 'helmet';
 import fs from "fs";
 import http2 from "http2";
-import compression from "compression";
+// import compression from "compression";
 import localizedRoutes from "./routes/localized.js";
 import adminRoutes from "./routes/admin.js";
 import apiRoutes from "./routes/api.js";
@@ -58,6 +59,9 @@ app.disable('x-powered-by');
 /**
  * ----------- GENERAL MIDDLEWARES -------------
  */
+app.use(helmet({
+	contentSecurityPolicy: false,
+}));
 app.use(methodsParser);
 app.use(cookieParser());
 // app.use(compression());
